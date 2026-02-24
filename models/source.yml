@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: snowflake_sample # Nombre interno para dbt
+    database: SNOWFLAKE_SAMPLE_DATA # El nombre real de la BD en Snowflake
+    schema: TPCH_SF1 # El esquema donde están las tablas de ejemplo
+    tables:
+      - name: customer
+      - name: orders
+      - name: lineitem
