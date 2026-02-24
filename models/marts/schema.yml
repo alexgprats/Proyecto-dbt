@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Tabla de hechos final para reporting de ventas"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: categoria_venta
+        description: "Segmentación basada en el importe del pedido"
