@@ -38,5 +38,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    example:
-      +materialized: table
+    staging:
+      +materialized: table # Capa de straccion
+
+    intermediate:
+      +materialized: view  # Capa opcional
+
+    marts:
+      +materialized: table # La capa de negocio final suele ser tablas

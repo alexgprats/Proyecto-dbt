@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Tabla incremental con los pedidos base de Snowflake"
+    columns:
+      - name: order_id
+        description: "Clave primaria del pedido"
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "Estado del pedido (F, O, P)"
+        tests:
+          - accepted_values:
+              values: ['F', 'O', 'P']
+
+  - name: stg_customers
+    description: "Listado de clientes limpios"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null

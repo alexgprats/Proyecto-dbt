@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_pedidos_clientes
+    description: "Unión de pedidos con información de clientes para análisis intermedio"
+    columns:
+      - name: order_id
+        tests:
+          - unique
