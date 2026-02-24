@@ -7,7 +7,7 @@ select
     p_name as nombre_pieza,
     p_mfgr as fabricante,
     p_brand as marca,
-    p_type as tipo,
+    p_type as tipo_pieza,
     p_size as tamano,
     p_retailprice as precio_minorista
 from source_parts
