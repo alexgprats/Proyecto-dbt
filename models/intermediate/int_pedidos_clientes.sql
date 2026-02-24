@@ -19,7 +19,6 @@ lineitem_aggregation as (
         count(l.part_id) as total_piezas,
         count(distinct l.supplier_id) as total_proveedores_distintos,
         sum(l.precio_extendido) as importe_bruto,
-        -- Traemos el nombre de la primera pieza y proveedor como ejemplo
         max(p.nombre_pieza) as pieza_ejemplo,
         max(s.nombre_proveedor) as proveedor_principal
     from lineitems l
@@ -32,8 +31,8 @@ final as (
     select
         o.order_id,
         o.customer_id,
-        c.name as nombre_cliente, -- Cambia 'nombre_cliente' por el alias que usaras en stg_customers
-        c.segment as segmento_cliente, -- Cambia 'segmento_cliente' por el alias de stg_customers
+        c.name as nombre_cliente, 
+        c.segment as segmento_cliente,
         o.order_date,
         o.status,
         la.total_piezas,
