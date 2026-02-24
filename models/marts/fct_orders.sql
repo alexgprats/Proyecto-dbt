@@ -15,5 +15,7 @@ select
         else 'Standard'
     end as categoria_venta,
     total_piezas,
+    total_proveedores_distintos,
+    pieza_ejemplo,
     proveedor_principal
 from orders_joined
