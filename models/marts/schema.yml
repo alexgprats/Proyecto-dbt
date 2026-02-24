@@ -2,11 +2,45 @@ version: 2
 
 models:
   - name: fct_orders
-    description: "Tabla de hechos final para reporting de ventas"
+    description: "Tabla de hechos central que consolida pedidos con métricas agregadas de piezas y proveedores."
     columns:
       - name: order_id
+        description: "Clave primaria del pedido."
         tests:
           - unique
           - not_null
+      - name: customer_id
+        description: "Clave foránea que conecta con la dimensión de clientes."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: importe_total
+        description: "Suma total del precio de todas las líneas del pedido (importe_bruto)."
       - name: categoria_venta
-        description: "Segmentación basada en el importe del pedido"
+        description: "Clasificación: 'High Value' si > 150,000, de lo contrario 'Standard'."
+
+  - name: dim_customers
+    description: "Tabla maestra de clientes."
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_parts
+    description: "Catálogo de piezas disponibles."
+    columns:
+      - name: part_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_suppliers
+    description: "Directorio de proveedores registrados."
+    columns:
+      - name: supplier_id
+        tests:
+          - unique
+          - not_null
