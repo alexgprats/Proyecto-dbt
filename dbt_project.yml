@@ -42,7 +42,7 @@ models:
       +materialized: table # Capa de straccion
 
     intermediate:
-      +materialized: view  # Capa opcional
+      +materialized: table  # Capa opcional
 
     marts:
       +materialized: table # La capa de negocio final suele ser tablas
