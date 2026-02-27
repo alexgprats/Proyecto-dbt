@@ -22,3 +22,29 @@ models:
         tests:
           - unique
           - not_null
+    
+  - name: stg_lineitems
+    description: "Detalle de cada línea de pedido"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: part_id
+        tests:
+          - not_null
+
+  - name: stg_parts
+    description: "Maestro de piezas/productos"
+    columns:
+      - name: part_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_suppliers
+    description: "Maestro de proveedores"
+    columns:
+      - name: supplier_id
+        tests:
+          - unique
+          - not_null
