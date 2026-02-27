@@ -9,6 +9,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: customer_id
         description: "Clave foránea que conecta con la dimensión de clientes."
         tests:
@@ -16,31 +17,53 @@ models:
           - relationships:
               to: ref('dim_customers')
               field: customer_id
+
+      # Estas son las claves foráneas adicionales que pide el reto para validar el modelo estrella
+      - name: pieza_ejemplo
+        description: "Referencia a la pieza principal del pedido."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_parts')
+              field: nombre_pieza 
+
+      - name: proveedor_principal
+        description: "Referencia al proveedor principal identificado en el pedido."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_suppliers')
+              field: nombre_proveedor 
+
       - name: importe_total
         description: "Suma total del precio de todas las líneas del pedido (importe_bruto)."
+
       - name: categoria_venta
-        description: "Clasificación: 'High Value' si > 150,000, de lo contrario 'Standard'."
+        description: "Campo calculado mediante macro. Clasificación: 'High Value' si > 150,000, de lo contrario 'Standard'."
 
   - name: dim_customers
-    description: "Tabla maestra de clientes."
+    description: "Tabla maestra de clientes con datos limpios y segmentados."
     columns:
       - name: customer_id
+        description: "Identificador único del cliente."
         tests:
           - unique
           - not_null
 
   - name: dim_parts
-    description: "Catálogo de piezas disponibles."
+    description: "Catálogo de piezas disponibles extraído de la capa staging."
     columns:
       - name: part_id
+        description: "Identificador único de la pieza."
         tests:
           - unique
           - not_null
 
   - name: dim_suppliers
-    description: "Directorio de proveedores registrados."
+    description: "Directorio de proveedores registrados en el sistema."
     columns:
       - name: supplier_id
+        description: "Identificador único del proveedor."
         tests:
           - unique
           - not_null
